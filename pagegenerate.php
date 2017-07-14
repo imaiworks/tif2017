@@ -47,13 +47,26 @@ foreach($tifdata as $key=>$data)
 //			echo $key3."\n";
 			$data3["day"]=$key;
 			$data3["stage"]=$key2;
-			$artistlist[$tifdata[$key][$key2][$key3]["artist"]][]=$data3;
+			$w_artistlist[$tifdata[$key][$key2][$key3]["artist"]][]=$data3;
 			$artistlistname[$tifdata[$key][$key2][$key3]["artist"]]=$tifdata[$key][$key2][$key3]["artist"];
 			
 			$artisttimelist[$tifdata[$key][$key2][$key3]["artist"]."--".$key."-".$tifdata[$key][$key2][$key3]["start"]."-".$tifdata[$key][$key2][$key3]["end"]]=$key."\t".$tifdata[$key][$key2][$key3]["start"]."\t".$tifdata[$key][$key2][$key3]["end"]."\t".$key2."\t".$tifdata[$key][$key2][$key3]["artist"];;
 			$artisttimelist_artistname[$tifdata[$key][$key2][$key3]["artist"]."--".$key."-".$tifdata[$key][$key2][$key3]["start"]."-".$tifdata[$key][$key2][$key3]["end"]]=$tifdata[$key][$key2][$key3]["artist"];
 		}
 			
+	}
+}
+foreach($w_artistlist as $key=>$data)
+{
+	$w_artistsort=array();
+	foreach($w_artistlist[$key] as $key2=>$data2)
+	{
+		$w_artistsort[$key2]=$w_artistlist[$key][$key2]["day"]."-".$w_artistlist[$key][$key2]["start"]."-".$w_artistlist[$key][$key2]["end"];
+	}
+	asort($w_artistsort);
+	foreach($w_artistsort as $key2=>$data2)
+	{
+		$artistlist[$key][]=$w_artistlist[$key][$key2];
 	}
 }
 
